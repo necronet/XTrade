@@ -8,6 +8,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.xtrade.android.service.ServiceHelper;
+import com.xtrade.android.util.AccountUtils;
 import com.xtrade.android.util.Settings;
 
 public class BaseActivity extends SherlockFragmentActivity {
@@ -19,6 +20,11 @@ public class BaseActivity extends SherlockFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedIntanceState) {
 		super.onCreate(savedIntanceState);
+		
+		if (!AccountUtils.isAuthenticated(this) && !(this instanceof LoginActivity)) {
+            AccountUtils.startAuthenticationFlow(this, getIntent());
+            finish();
+        }
 		
 		// Getting the action bar
 		actionBar = getSupportActionBar();

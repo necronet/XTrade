@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xtrade.android"
+    android:installLocation="auto"
     android:versionCode="1"
-    android:versionName="1.0"
-    android:installLocation="auto" >
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -15,13 +15,14 @@
         android:protectionLevel="normal" >
     </permission>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACT" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
-	<uses-permission android:name="android.permission.USE_CREDENTIALS"></uses-permission>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" >
+    </uses-permission>
     <uses-permission android:name="com.xtrade.android.RECEIVER_PERMISSION" />
-    
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -30,8 +31,7 @@
         android:label="@string/app_name"
         android:logo="@drawable/ic_logo_text"
         android:theme="@style/Theme.XTrade" >
-        
-        <uses-library android:name="com.google.android.maps"/>
+        <uses-library android:name="com.google.android.maps" />
 
         <activity
             android:name=".LoginActivity"
@@ -39,11 +39,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.XTrade.NoActionbar" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="com.xtrade.android.LOGIN_ACTION" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -51,9 +48,14 @@
             android:name=".TraderActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="com.xtrade.android.MAIN_XTRADE" />
                 <action android:name="com.xtrade.android.TRADER_ACTION" />
                 <action android:name="com.xtrade.android.REQUEST_DATA" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -62,6 +64,7 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.xtrade.android.TRADER_CREATE_UPDATE_ACTION" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -70,6 +73,7 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.xtrade.android.TRADER_DETAIL_ACTION" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -78,6 +82,7 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.xtrade.android.CONTACT_CREATE_UPDATE_ACTION" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -86,6 +91,7 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.xtrade.android.ABOUT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -94,6 +100,7 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.xtrade.android.CLIENT_MAP_ACTION" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -102,21 +109,18 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.xtrade.android.SETTINGS" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
-         <activity
+        <activity
             android:name=".SignUpActivity"
             android:screenOrientation="portrait" >
         </activity>
-         <activity
+        <activity
             android:name=".ForgotPasswordActivity"
             android:screenOrientation="portrait" >
         </activity>
-        
-         
-         
 
         <!-- Services Declaration -->
 
@@ -127,6 +131,7 @@
             <intent-filter>
                 <action android:name="com.xtrade.android.LOGIN_ACTION" />
                 <action android:name="com.xtrade.android.REQUEST_DATA" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
@@ -135,8 +140,8 @@
             android:name=".provider.XTradeProvider"
             android:authorities="com.xtrade.android" >
         </provider>
-        
-        <receiver android:name=".widget.XTradeWidgetProvider">
+
+        <receiver android:name=".widget.XTradeWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -145,7 +150,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/xtrade_widget_provider" />
         </receiver>
-        
     </application>
 
 </manifest>
