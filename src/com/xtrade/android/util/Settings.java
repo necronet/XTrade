@@ -14,8 +14,8 @@ public class Settings {
 	public static final String MAP_KEY = null;// this our key for release mode
 	public static final String MAP_KEY_DEBUG = "";// this is the key we should use for debugging
 
-	public static final String REMOTE_SERVER_DEBUG = "http://172.20.129.228:8085/json/";
-//	public static final String REMOTE_SERVER_DEBUG = "http://x-trade.appspot.com/json/";
+	//public static final String REMOTE_SERVER_DEBUG = "http://172.20.129.228:8085/json/";
+	public static final String REMOTE_SERVER_DEBUG = "http://x-trade.appspot.com/json/";
 	public static final String REMOTE_SERVER = "http://x-trade.appspot.com/json/";
 	
 	public static String getServerURL() {

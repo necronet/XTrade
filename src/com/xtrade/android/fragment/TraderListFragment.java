@@ -59,7 +59,7 @@ public class TraderListFragment extends SherlockFragment implements EventConstan
 	public void onResume() {
 		super.onResume();
 		// Force start background query to load sessions
-		getActivity().getSupportLoaderManager().restartLoader(0, null, this);
+		getLoaderManager().restartLoader(0, null, this);
 	}
 
 	// LoaderCallbacks interface
@@ -142,7 +142,7 @@ public class TraderListFragment extends SherlockFragment implements EventConstan
 					contentValues.put(TraderColumns.ISFAVORITE, isFavorite ? 0 : 1);
 					boolean updated = getActivity().getContentResolver().update(TraderEntity.buildUri(traderId), contentValues, null, null) > 0;
 					if (updated)
-						getActivity().getSupportLoaderManager().restartLoader(0, null, TraderListFragment.this);
+						getLoaderManager().restartLoader(0, null, TraderListFragment.this);
 				}
 			});
 		}

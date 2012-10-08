@@ -1,10 +1,14 @@
 package com.xtrade.android;
 
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.view.ViewPager;
 import android.widget.ListView;
 
@@ -17,7 +21,6 @@ import com.xtrade.android.fragment.SectionsPagerAdapter;
 import com.xtrade.android.fragment.TraderListFragment;
 import com.xtrade.android.fragment.TraderTodayFragment;
 import com.xtrade.android.util.ActionConstant;
-import com.xtrade.android.util.Debug;
 import com.xtrade.android.util.EventConstant;
 
 public class TraderActivity extends BaseActivity implements ActionBar.TabListener, EventConstant {
@@ -25,6 +28,7 @@ public class TraderActivity extends BaseActivity implements ActionBar.TabListene
 	private TraderBroadcastReceiver receiver;
 	private ViewPager viewPager;
 	private SectionsPagerAdapter sectionsPagerAdapter;
+	private final static int TRADER_LIST_INDEX=0;
 	
 	public void onCreate(Bundle savedIntanceState) {
 		upLevel = false;
@@ -94,11 +98,7 @@ public class TraderActivity extends BaseActivity implements ActionBar.TabListene
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
 		switch (menuItem.getItemId()) {
-//		case R.id.mniNewTrader:
-//			Intent intent = new Intent(ActionConstant.TRADER_CREATE_UPDATE);
-//			intent.putExtra("ACTION_TYPE", TRADER_CREATE_REQUEST_CODE);
-//			startActivityForResult(intent, TRADER_CREATE_REQUEST_CODE);
-//			break;
+
 		case R.id.mniSettings:
 			startActivity(new Intent(ActionConstant.SETTINGS));
 			break;
@@ -110,17 +110,17 @@ public class TraderActivity extends BaseActivity implements ActionBar.TabListene
 		return super.onOptionsItemSelected(menuItem);
 	}
 
-//	public void onResume() {
-//		IntentFilter filter = new IntentFilter();
-//		filter.addAction(ActionConstant.TRADER);
-//		registerReceiver(receiver, filter);
-//		super.onResume();
-//	}
-//	
-//	public void onPause() {
-//		unregisterReceiver(receiver);
-//		super.onPause();
-//	}
+	public void onResume() {
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(ActionConstant.REQUEST_DATA);
+		registerReceiver(receiver, filter);
+		super.onResume();
+	}
+	
+	public void onPause() {
+		unregisterReceiver(receiver);
+		super.onPause();
+	}
 	
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -144,7 +144,9 @@ public class TraderActivity extends BaseActivity implements ActionBar.TabListene
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			Debug.info("Getting the message broadcasted");
+			LoaderCallbacks<Cursor> callbacks=(LoaderCallbacks<Cursor>) sectionsPagerAdapter.getItem(TRADER_LIST_INDEX);
+			
+			getSupportLoaderManager().restartLoader(0, null, callbacks);	
 		}
 		
 	}
