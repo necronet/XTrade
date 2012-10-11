@@ -32,7 +32,7 @@ public class TraderDetailActivity extends BaseActivity implements EventConstant 
 		super.onCreate(savedIntanceState);
 		setContentView(R.layout.trader_detail);
 		tradersId = getIntent().getLongArrayExtra(TraderColumns.TRADER_ID);
-		int currentIndex = getIntent().getIntExtra("position", -1);
+		currentPage= getIntent().getIntExtra("position", -1);
 
 		mtraderPagerAdapter = new TraderPagerAdapter(getSupportFragmentManager());
 
@@ -40,7 +40,7 @@ public class TraderDetailActivity extends BaseActivity implements EventConstant 
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
 		mViewPager.setAdapter(mtraderPagerAdapter);
-		mViewPager.setCurrentItem(currentIndex);
+		mViewPager.setCurrentItem(currentPage);
 		mViewPager.setOnPageChangeListener(new PageListener());
 	}
 
@@ -96,8 +96,10 @@ public class TraderDetailActivity extends BaseActivity implements EventConstant 
 
 		if (resultCode == RESULT_OK && (requestCode == CONTACT_CREATE_REQUEST_CODE || requestCode == CONTACT_UPDATE_REQUEST_CODE)) {
 			ListView lvwContact = (ListView) findViewById(R.id.lvwContact);
-			if (lvwContact != null)
-				getContentResolver().query(ContactEntity.CONTENT_URI, null, ContactColumns.TRADER_ID + " = '" + getIntent().getLongExtra(TraderColumns.TRADER_ID, -1) + "'", null, null);
+			if (lvwContact != null){
+				getContentResolver().query(ContactEntity.CONTENT_URI, null, ContactColumns.TRADER_ID + " = '" + tradersId[currentPage] + "'", null, null);
+				
+			}
 		}
 	}
 
