@@ -12,5 +12,6 @@ public class ActionConstant {
 	public static final String SETTINGS = PREFIX + "SETTINGS";
 	public static final String MAIN_XTRADE = PREFIX + "MAIN_XTRADE";
 	public static final String REQUEST_DATA = PREFIX + "REQUEST_DATA";
+	public static final String SYNC_RECORD = PREFIX + "SYNC_DATA";
 	
 }

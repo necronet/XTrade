@@ -123,6 +123,7 @@
             <intent-filter>
                 <action android:name="com.xtrade.android.LOGIN_ACTION" />
                 <action android:name="com.xtrade.android.REQUEST_DATA" />
+                <action android:name="com.xtrade.android.SYNC_DATA" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
