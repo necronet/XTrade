@@ -2,6 +2,7 @@ package com.xtrade.android.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,7 +13,8 @@ import android.provider.BaseColumns;
 import com.xtrade.android.provider.DatabaseContract.ContactEntity;
 import com.xtrade.android.provider.DatabaseContract.ContactTypeEntity;
 import com.xtrade.android.provider.DatabaseContract.TraderEntity;
-import com.xtrade.android.util.Debug;
+import com.xtrade.android.service.ServiceHelper;
+import com.xtrade.android.util.ActionConstant;
 
 public class XTradeProvider extends ContentProvider {
 
@@ -114,10 +116,14 @@ public class XTradeProvider extends ContentProvider {
 			id=db.insertOrThrow(DatabaseHelper.Tables.CONTACT, null, values);
 			getContext().getContentResolver().notifyChange(uri, null);
 			
+			Intent intent=new Intent(ActionConstant.SYNC_RECORD);
+			intent.putExtra("uri", uri);
+			ServiceHelper.getInstance(getContext()).invokeService(intent);
 			return ContactEntity.buildUri(id);
 		case CONTACT_TYPE:
 			id=db.insertOrThrow(DatabaseHelper.Tables.CONTACT_TYPE, null, values);
 			getContext().getContentResolver().notifyChange(uri, null);
+			
 			return ContactTypeEntity.buildUri(String.valueOf(id));
 		default:
 			throw new UnsupportedOperationException("Unknown uri: " + uri);

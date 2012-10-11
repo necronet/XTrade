@@ -11,13 +11,19 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
+import android.net.Uri;
 
 import com.google.gson.Gson;
 import com.xtrade.android.http.HttpCaller;
 import com.xtrade.android.http.HttpCallerFactory;
+import com.xtrade.android.http.RestOption;
 import com.xtrade.android.http.RestOption.Method;
 import com.xtrade.android.http.RestOption.Parameter;
+import com.xtrade.android.object.Contact;
 import com.xtrade.android.object.User;
+import com.xtrade.android.provider.DatabaseContract;
+import com.xtrade.android.provider.DatabaseContract.XTradeBaseColumns;
 import com.xtrade.android.util.ActionConstant;
 import com.xtrade.android.util.Debug;
 import com.xtrade.android.util.LoginParameter;
@@ -82,7 +88,38 @@ public class XTradeBaseService extends IntentService {
 			} catch (MalformedURLException murle) {
 				murle.printStackTrace();
 			}
+		}else if(intent.getAction().equals(ActionConstant.SYNC_RECORD)){
+			Uri uri= (Uri)intent.getParcelableExtra("uri");
+			//get all dirty records FLAG_STATE=1
+			//TODO: make this method more generic currently will work only for contacts
+			Cursor cursor=getContentResolver().query(uri, null, XTradeBaseColumns.FLAG_STATE+"=?", new String[]{"1"}, null);
+			Map<RestOption.Parameter,String> parameters=new HashMap<RestOption.Parameter,String>();
+			while(cursor.moveToNext()){
+				Gson gson = new Gson();
+				Contact contact = new Contact();
+				contact.traderId=cursor.getString(cursor.getColumnIndex(DatabaseContract.ContactColumns.TRADER_ID));
+				contact.email=cursor.getString(cursor.getColumnIndex(DatabaseContract.ContactColumns.EMAIL));
+				contact.lastName=cursor.getString(cursor.getColumnIndex(DatabaseContract.ContactColumns.LAST_NAME));
+				contact.phone=cursor.getString(cursor.getColumnIndex(DatabaseContract.ContactColumns.PHONE));
+				//contact.role=cursor.getString(cursor.getColumnIndex(DatabaseContract.ContactColumns.TYPE));
+				Debug.info("JSON body "+gson.toJson(contact));
+				parameters.put(Parameter.BODY, gson.toJson(contact));
+				//update or insert records
+				try {
+					boolean result = httpCaller.call(new URL(Settings.getServerURL() + "contact/"), Method.POST,parameters);
+					Debug.info("Result from call "+result);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+			
 		}
+		
+		
+		
 		sendBroadcast(intent);
 	}
 
