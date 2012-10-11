@@ -84,7 +84,7 @@ public class HttpCallerApacheImpl extends AbstractHttpCaller {
 				httpPost = new HttpPost(urlResource.toURI());
 				httpPost.addHeader("content-type", "application/json");
 				
-				if (parameters.containsKey(Parameter.BODY)) {
+				if (parameters !=null && parameters.containsKey(Parameter.BODY)) {
 					// this request comes with an object to go in the body
 					StringEntity entity = new StringEntity(parameters.get(Parameter.BODY));
 
