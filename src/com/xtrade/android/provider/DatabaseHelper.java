@@ -54,8 +54,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ ContactColumns.EMAIL + " TEXT, "
 				+ ContactColumns.PHONE + " TEXT, "
 				+ ContactColumns.FLAG_STATE + " BOOL DEFAULT 1, "//by default the record is dirty
-				+ ContactColumns.TRADER_ID + " TEXT)");
-		
+				+ ContactColumns.TRADER_ID + " TEXT," +
+				"UNIQUE (" + ContactColumns.CONTACT_ID + ") ON CONFLICT REPLACE )");
 		
 		// Contact type table
 		db.execSQL("CREATE TABLE " + Tables.CONTACT_TYPE + " (" + BaseColumns._ID
