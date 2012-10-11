@@ -38,6 +38,7 @@ import com.xtrade.android.provider.DatabaseContract.ContactColumns;
 import com.xtrade.android.provider.DatabaseContract.ContactEntity;
 import com.xtrade.android.provider.DatabaseContract.ContactTypeColumns;
 import com.xtrade.android.provider.DatabaseContract.TraderColumns;
+import com.xtrade.android.util.Debug;
 import com.xtrade.android.util.EventConstant;
 import com.xtrade.android.util.Settings;
 
@@ -102,7 +103,9 @@ public class ContactEditFragment extends SherlockFragment implements EventConsta
 
 		// Setting default values while we're on developer mode
 		if (Settings.DEBUG && extra == CONTACT_CREATE_REQUEST_CODE) {
-			etxFirstContactName.setText("Jos\u00E9 Luis Ayerdis Espinoza");
+			etxFirstContactName.setText("Jos\u00E9 Luis");
+			etxLastContactName.setText("Ayerdis Espinoza");
+			
 			etxContactEmail.setText("joserayerdis@gmail.com");
 			etxContactPhone.setText("86727076");
 		}
