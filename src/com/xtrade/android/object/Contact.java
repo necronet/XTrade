@@ -15,6 +15,10 @@ public class Contact {
 	public String phone;
 	public String traderId;
 	
+	public Contact(){
+		
+	}
+	
 	public Contact(String contactId, String name, String role, String email, String phone, String traderId) {
 		this.contactId = contactId;
 		this.firstName = name;
