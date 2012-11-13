@@ -9,6 +9,6 @@
     <color name="primary_text_color">#FFFFFF</color>
     <color name="link_item_color">#004A00</color>
     <color name="selected_list">#c3e5ff</color>    
-    <color name="list_header">#0351f1</color>
+    <color name="list_header">#FFFFFF</color>
     <color name="text_solid_color">#070807</color>
 </resources>
