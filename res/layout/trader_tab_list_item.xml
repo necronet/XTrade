@@ -1,62 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/list_bg"
     android:descendantFocusability="blocksDescendants"
     android:padding="@dimen/list_default_padding" >
 
-    <!-- <LinearLayout -->
-    <!-- android:id="@+id/linearLayout1" -->
-    <!-- android:layout_width="wrap_content" -->
-    <!-- android:layout_height="wrap_content" -->
-    <!-- android:layout_below="@+id/ivwTraderPhoto" -->
-    <!-- android:layout_toRightOf="@+id/ivwTraderPhoto" -->
-    <!-- android:orientation="horizontal" -->
-    <!-- android:paddingRight="@dimen/list_default_padding" > -->
-    <!-- </LinearLayout> -->
-
-    <TextView
-        android:id="@+id/tvwTraderName"
-        style="@style/ListHeader"
+    <LinearLayout
+        android:id="@+id/header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/ivwTraderPhoto"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:background="@color/grey"
-        android:padding="@dimen/list_default_padding"
-        android:text="Adipiscing Parturient Justo Lorem"
-        android:textColor="@color/base_green_light" />
-
-    <ImageView
-        android:id="@+id/ivwTraderPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tvwTraderName"
-        android:layout_alignTop="@+id/tvwTraderName"
-        android:background="@color/grey"
-        android:src="@drawable/ic_launcher" />
-
+        android:orientation="horizontal"
+        android:padding="@dimen/default_padding" >
+
+        <ImageView
+            android:id="@+id/ivwTraderPhoto"
+            android:background="@color/white"
+            android:padding="@dimen/thumbnail_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvwTraderName"
+            style="@style/ListHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:padding="@dimen/list_default_padding"
+            android:text="Adipiscing Parturient"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/chbFavorite"
+            android:layout_width="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/btn_star" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tvwTraderAddress"
+        style="@style/ListItemDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ivwTraderPhoto"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_below="@+id/tvwTraderName"
-        android:background="@color/trader_list_color"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/header_container"
         android:gravity="center_vertical"
         android:text="Nullam quis risus eget urna mollis ornare vel eu leo. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
-        android:textColor="@color/black" />
-
-    <ImageButton
-        android:id="@+id/chbFavorite"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tvwTraderAddress"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/tvwTraderName"
-        android:background="@android:color/transparent"
-        android:src="@android:drawable/btn_star" />
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>
