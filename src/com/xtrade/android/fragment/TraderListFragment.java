@@ -104,11 +104,6 @@ public class TraderListFragment extends SherlockFragment implements EventConstan
 		public View getView(int position, View convertView, ViewGroup parent) {
 			convertView = super.getView(position, convertView, parent);
 
-//			if (position % 2 == 0)
-//				convertView.setBackgroundResource(R.drawable.list_bg_odd);
-//			else
-//				convertView.setBackgroundResource(R.drawable.list_bg);
-
 			return convertView;
 		}
 
