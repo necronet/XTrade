@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.XTrade" parent="@style/Theme.Sherlock.Light">
+    <style name="Theme.XTrade" parent="Theme.Sherlock.Light">
         
         <item name="android:textAppearance">@style/TextAppearance.XTrade</item>
         <item name="android:editTextStyle">@style/Widget.XTrade.EditText</item>

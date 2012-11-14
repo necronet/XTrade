@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/list_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    android:background="@drawable/list_item_rectangle"
     android:descendantFocusability="blocksDescendants"
-    android:padding="@dimen/list_default_padding" >
+    android:layout_margin="@dimen/default_margin"
+    
+     >
 
     <LinearLayout
         android:id="@+id/header_container"
@@ -19,10 +22,10 @@
 
         <ImageView
             android:id="@+id/ivwTraderPhoto"
-            android:background="@color/white"
-            android:padding="@dimen/thumbnail_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/thumbnail_padding"
             android:src="@drawable/ic_launcher" />
 
         <TextView
@@ -32,16 +35,42 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:padding="@dimen/list_default_padding"
+            android:paddingLeft="@dimen/default_padding_side"
             android:text="Adipiscing Parturient"
             tools:ignore="HardcodedText" />
 
-        <ImageButton
-            android:id="@+id/chbFavorite"
+        <TextView
+            android:id="@+id/btnContact"
             android:layout_width="wrap_content"
-            android:background="@android:color/transparent"
             android:layout_height="match_parent"
-            android:src="@android:drawable/btn_star" />
+            android:drawableTop="@drawable/ic_contact"
+            android:gravity="left"
+            android:paddingRight="@dimen/default_padding_side"
+            android:text="10 Contacts"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            tools:ignore="HardcodedText" />
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_margin="@dimen/divider_margin"
+            android:gravity="left"
+             />
+        
+        <TextView
+            android:id="@+id/btnEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_event"
+            android:gravity="left"
+            android:paddingRight="@dimen/default_padding_side"
+            android:text="15 Events"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            tools:ignore="HardcodedText" />
+        
     </LinearLayout>
 
     <TextView
@@ -49,10 +78,20 @@
         style="@style/ListItemDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/header_container"
+        android:layout_toLeftOf="@+id/chbFavorite"
         android:gravity="center_vertical"
         android:text="Nullam quis risus eget urna mollis ornare vel eu leo. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
         tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/chbFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvwTraderAddress"
+        android:layout_alignRight="@+id/header_container"
+        android:layout_below="@+id/header_container"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/btn_star" />
 
 </RelativeLayout>
