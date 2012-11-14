@@ -132,16 +132,7 @@
             android:name=".provider.XTradeProvider"
             android:authorities="com.xtrade.android" >
         </provider>
-        
-        <receiver android:name=".widget.XTradeWidgetProvider">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/xtrade_widget_provider" />
-        </receiver>
         
     </application>
 
